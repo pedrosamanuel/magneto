@@ -74,7 +74,7 @@ public class DnaService {
         for (int i = 0;  i < n ; i++) {
             for (int j = 0; j < n ; j++) {
                 //checkRows
-                if (j +3 < n &&
+                if (j + 3 < n &&
                         dnaMatrix[i][j] == dnaMatrix[i][j + 1] &&
                         dnaMatrix[i][j] == dnaMatrix[i][j + 2] &&
                         dnaMatrix[i][j] == dnaMatrix[i][j + 3]) {
