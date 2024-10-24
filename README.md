@@ -8,7 +8,28 @@
 <h2>Desafío</h2>
 <p>El desafío consiste en desarrollar una API que permita verificar si una persona es mutante o no, en base a su secuencia de ADN. Además, la API debe contar con estadísticas que muestren la cantidad de humanos mutantes y no mutantes detectados.</p>
 
-<h2>API Usage</h2>
+<h3>Reglas del desafío</h3>
+<ul>
+    <li>Recibes una secuencia de ADN en forma de un array de strings, donde cada string representa una fila de la tabla (NxN).</li>
+    <li>Las únicas letras permitidas en la secuencia de ADN son: <b>A</b> (Adenina), <b>T</b> (Timina), <b>C</b> (Citosina) y <b>G</b> (Guanina).</li>
+    <li>Un humano es considerado <b>mutante</b> si en la secuencia de ADN se encuentran más de una secuencia de cuatro letras idénticas de forma:
+        <ul>
+            <li><b>Horizontal</b></li>
+            <li><b>Vertical</b></li>
+            <li><b>Diagonal</b> (en cualquiera de las dos direcciones)</li>
+        </ul>
+    </li>
+    <li>Ejemplo de un caso mutante:</li>
+    <pre>
+{
+  "dna": ["ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"]
+}
+    </pre>
+    <p>En este caso, hay dos secuencias de cuatro letras iguales: una horizontal (CCCCTA) y otra diagonal (AGAAGG), por lo que el resultado es mutante.</p>
+    <li>Si solo se encuentra una secuencia o ninguna, la persona no es mutante.</li>
+</ul>
+
+<h2>Uso de la API</h2>
 <p>La API está desplegada en <a href="https://magneto-1a52.onrender.com">https://magneto-1a52.onrender.com</a> y ofrece los siguientes endpoints:</p>
 
 <h3>1. Verificar si es mutante</h3>
@@ -70,31 +91,6 @@
   <li>Compila el proyecto con Gradle: <code>./gradlew build</code></li>
   <li>Ejecuta la aplicación: <code>./gradlew bootRun</code></li>
 </ol>
-
-<h2>Diagrama de Secuencia</h2>
-<p>El siguiente diagrama de secuencia describe el proceso de verificación de ADN mutante:</p>
-<pre>
-User -> API: POST /api/mutant
-API -> MutantService: isMutant(dna)
-MutantService -> ADNValidator: validarADN(dna)
-MutantService -> ADNAnalyzer: analizarSecuencias(dna)
-MutantService -> DB: guardarResultado(dna, isMutant)
-API -> User: Respuesta 200/403
-</pre>
-
-<h2>Arquitectura del Sistema</h2>
-<p>La aplicación sigue una arquitectura de microservicios sencilla:</p>
-<ul>
-  <li><b>API Gateway:</b> Procesa las solicitudes HTTP y las dirige al servicio correspondiente.</li>
-  <li><b>Servicio de Mutantes:</b> Analiza la secuencia de ADN para determinar si el humano es mutante.</li>
-  <li><b>Base de Datos:</b> Guarda las secuencias de ADN y el resultado de la verificación.</li>
-</ul>
-
-<h2>Tests Automáticos</h2>
-<p>El proyecto incluye una suite de tests automáticos con cobertura superior al 80%. Puedes ejecutar los tests con el siguiente comando:</p>
-<pre>
-./gradlew test
-</pre>
 
 </body>
 </html>
