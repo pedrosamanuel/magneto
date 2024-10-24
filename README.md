@@ -92,5 +92,7 @@
   <li>Ejecuta la aplicación: <code>./gradlew bootRun</code></li>
 </ol>
 
+<h2>Tests Unitarios</h2>
+<p>El proyecto incluye una serie de test unitarios para comprobar el funcionamiento de el metodo que comprueba si un adn es mutante o no.</p>
 </body>
 </html>
