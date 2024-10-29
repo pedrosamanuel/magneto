@@ -1,4 +1,23 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+    body { background: #f7f9fa; display: flex; justify-content: center; padding: 2rem; }
+    .container { width: 100%; max-width: 800px; background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 1rem; }
+    h2 { color: #333; text-align: center; margin-bottom: 1rem; }
+    .sequence { margin: 1rem 0; }
+    .actor { display: flex; flex-direction: column; align-items: center; padding: 1rem; }
+    .actor-title { font-weight: bold; margin-bottom: 0.5rem; }
+    .arrow { display: flex; justify-content: space-between; align-items: center; margin: 0.5rem 0; }
+    .arrow div { padding: 0.5rem; border-radius: 4px; font-size: 0.9rem; color: #555; }
+    .arrow .request { background: #d4e5ff; }
+    .arrow .response { background: #dff0d8; }
+    .actor img { width: 50px; height: 50px; border-radius: 50%; }
+  </style>
+</head>
 <body>
 
 <h1>Mutant Detector API</h1>
@@ -94,5 +113,78 @@
 
 <h2>Tests Unitarios</h2>
 <p>El proyecto incluye una serie de test unitarios para comprobar el funcionamiento de el metodo que comprueba si un adn es mutante o no.</p>
+
+<div class="container">
+    <h2>Secuencia del Endpoint /api/mutant</h2>
+    
+    <div class="sequence">
+      <div class="actor">
+        <div class="actor-title">Usuario</div>
+        <img src="https://cdn-icons-png.flaticon.com/512/254/254451.png" alt="Usuario">
+      </div>
+      <div class="arrow">
+        <div class="request">POST /api/mutant (DNARequest)</div>
+        <div class="response">HTTP Response (DNAResponse)</div>
+      </div>
+      
+      <div class="actor">
+        <div class="actor-title">DnaController</div>
+        <img src="https://cdn-icons-png.flaticon.com/512/484/484167.png" alt="DnaController">
+        <div class="arrow">
+          <div class="request">checkDna(DNARequest)</div>
+          <div class="response">DNAResponse</div>
+        </div>
+      </div>
+
+      <div class="actor">
+        <div class="actor-title">DnaService</div>
+        <img src="https://cdn-icons-png.flaticon.com/512/190/190603.png" alt="DnaService">
+        <div class="arrow">
+          <div class="request">analyzeDna(String[] dna)</div>
+        </div>
+      </div>
+
+      <div class="arrow">
+        <div class="request">validateDna(dna)</div>
+      </div>
+      
+      <div class="arrow">
+        <div class="response">true/false</div>
+      </div>
+
+      <div class="arrow">
+        <div class="request">checkDna(dnaArray)</div>
+      </div>
+
+      <div class="actor">
+        <div class="actor-title">DnaRepository</div>
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828393.png" alt="DnaRepository">
+        <div class="arrow">
+          <div class="request">findByDna(dnaSequence)</div>
+        </div>
+        <div class="arrow">
+          <div class="response">Optional<Dna></div>
+        </div>
+      </div>
+
+      <div class="actor">
+        <div class="actor-title">DnaService</div>
+        <div class="arrow">
+          <div class="request">isMutant(dnaArray)</div>
+        </div>
+      </div>
+
+      <div class="arrow">
+        <div class="response">isMutant = true/false</div>
+      </div>
+      
+      <div class="actor">
+        <div class="actor-title">DnaRepository</div>
+        <div class="arrow">
+          <div class="request">save(dna)</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
